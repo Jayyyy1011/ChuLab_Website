@@ -2,6 +2,15 @@
   <h2>新增Meeting時程</h2>
   <hr>
   <%= form_for @meeting do |f| %>
+
+    <% if @meeting.errors.any? %>
+    <ul>
+      <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <% end %>
+    </ul>
+
   日期
   <%= f.text_field :date %>
   <br>
