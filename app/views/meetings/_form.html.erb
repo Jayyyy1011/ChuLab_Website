@@ -1,0 +1,21 @@
+<%= form_for @meeting do |f| %>
+
+  <% if @meeting.errors.any? %>
+  <ul>
+    <% @meeting.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% end %>
+  </ul>
+
+日期
+<%= f.text_field :date %>
+<br>
+講者
+<%= f.text_field :speaker %>
+<br>
+備註
+<%= f.text_area :remark %>
+<br>
+<%= f.submit "送出", disable_with: "提交中..." %>
+<% end %>
