@@ -31,6 +31,12 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def destroy
+    @meeting = Meeting.find(params[:id])
+    @meeting.delete
+    redirect_to meetings_path, alert: "已刪除此項目！"
+  end
+
   private
 
   def meeting_params
