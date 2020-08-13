@@ -1,7 +1,6 @@
-<div class="loginbox">
-  <div class="col-md-4 col-md-offset-4 loginbox-inner">
-    <div class="col-md-10 col-md-offset-1">
-      <h2 align="center"><span class="fa fa-sign-in">Log in</span></h2>
+<div class="col-md-4 col-md-offset-4">
+  <div class="col-md-10 col-md-offset-1">
+      <h2 align="center">Log in</h2>
 
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -27,6 +26,6 @@
     <%= render "devise/shared/links" %>
   </div>
 
-    </div>
+
   </div>
 </div>
