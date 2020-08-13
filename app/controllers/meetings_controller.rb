@@ -11,7 +11,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(meeting_params)
     if @meeting.save
-      redirect_to meetings_path
+      redirect_to meetings_path, notice: "已成功新增！"
     else
       render :new
     end
@@ -25,6 +25,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     if @meeting.update(meeting_params)
       redirect_to meetings_path
+      flash[:warning] = "已完成編輯！"
     else
       render :edit
     end
