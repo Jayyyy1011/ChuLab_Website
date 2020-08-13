@@ -1,21 +1,12 @@
-<%= form_for @meeting do |f| %>
+<%= simple_form_for @meeting do |f| %>
 
-  <% if @meeting.errors.any? %>
-  <ul>
-    <% @meeting.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  <% end %>
-  </ul>
+  <div class="form-group">
+    <%= f.input :date, label: "日期", input_html:{class: "form-control"} %>
+    <%= f.input :speaker, label: "講者", input_html:{ class: "form-control"} %>
+    <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
+  </div>
+    <b>星號 * 表示必填</b>
+    <br></br>
+  <%= f.submit "送出", class:"btn btn-primary", data: {disable_with: "送出中..."} %>
 
-日期
-<%= f.text_field :date %>
-<br>
-講者
-<%= f.text_field :speaker %>
-<br>
-備註
-<%= f.text_area :remark %>
-<br>
-<%= f.submit "送出", disable_with: "提交中..." %>
 <% end %>
