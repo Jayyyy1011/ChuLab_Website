@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  formula: MyString
+  nickname: MyString
+  package: MyString
+  company: MyString
+  agent: MyString
+  storage_place: MyString
+  remark: MyText
+  remain: MyString
+
+two:
+  name: MyString
+  formula: MyString
+  nickname: MyString
+  package: MyString
+  company: MyString
+  agent: MyString
+  storage_place: MyString
+  remark: MyText
+  remain: MyString
