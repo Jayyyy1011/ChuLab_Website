@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   resources :optical_elements
 
+  resources :posts
+
 end

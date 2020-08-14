@@ -1,0 +1,25 @@
+<div class="text-center">
+  <h1> 留言板 </h1>
+</div>
+
+<div class="col-md-12">
+  <div class="post">
+    <%= link_to("我想留言", new_post_path, class:"btn btn-primary pull-right") %>
+  </div>
+
+<br><br><br>
+
+      <% @posts.each do |post| %>
+
+    <div class="col-md-offset-4 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= post.user.email %> 說...<%= link_to("刪除", post_path(post), class:"btn btn-xs btn-default pull-right", method: :delete, data:{ confirm:"Are you sure?"}) %></h3>
+        </div>
+        <div class="panel-body">
+          <h5><%= render_post_content(post) %></h5>
+          <h6 class="pull-right"><%= post.created_at.strftime("%Y/%m/%d %I:%M %p")%></h6>
+        </div>
+      </div>
+    </div>
+      <% end %>
