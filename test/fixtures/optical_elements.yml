@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_number: MyString
+  name: MyString
+  bandwidth: MyString
+  category_id: 1
+  remark: MyText
+
+two:
+  item_number: MyString
+  name: MyString
+  bandwidth: MyString
+  category_id: 1
+  remark: MyText

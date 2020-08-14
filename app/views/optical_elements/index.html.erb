@@ -1,0 +1,36 @@
+<div class="text-center">
+  <h1> 光學元件 </h1>
+</div>
+
+<div class="col-md-12">
+  <div class="meeting">
+    <%= link_to("新增", new_optical_element_path, class:"btn btn-primary pull-right") %>
+  </div>
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <td>類別</td>
+        <td>Item #</td>
+        <td>適用光區</td>
+        <td>備註</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @optical_elements.each do |optical_element| %>
+      <tr>
+        <td><%= optical_element.category.name %></td>
+        <td><%= optical_element.item_number %></td>
+        <td><%= optical_element.bandwidth %></td>
+        <td><%= optical_element.remark %></td>
+        <td>
+          <%= link_to("編輯", edit_optical_element_path(optical_element), class:"btn btn-sm btn-default") %>
+          <%= link_to("刪除", optical_element_path(optical_element), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
