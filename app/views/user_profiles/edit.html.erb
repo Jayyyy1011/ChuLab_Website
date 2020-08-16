@@ -6,12 +6,12 @@
     <div class="form-group">
       <%= f.input :name, label: "名字", input_html:{ class: "form-control"} %>
       <%= f.input :birthday, label: "生日",
-                             as: :date, start_year: 1975, end_year: 2010, order: [:month, :year, :day],
+                             as: :date, start_year: 1975, end_year: 2010, order: [:year, :month, :day],
                              input_html:{ class: "form-control"} %>
     </div>
 
     <br></br>
     <%= f.submit "送出", class:"btn btn-primary", data: {disable_with: "送出中..."} %>
   </div>
-  
+
 <% end %>

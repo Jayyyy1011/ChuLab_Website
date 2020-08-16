@@ -1,7 +1,9 @@
 <%= simple_form_for @meeting do |f| %>
 
   <div class="form-group">
-    <%= f.input :date, label: "日期", input_html:{class: "form-control"} %>
+    <%= f.input :date, label: "日期",
+                           as: :date, start_year: Date.today.year, end_year: Date.today.year + 1, order: [:year, :month, :day],
+                           input_html:{ class: "form-control"} %>
     <%= f.input :speaker, label: "講者", input_html:{ class: "form-control"} %>
     <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
   </div>
