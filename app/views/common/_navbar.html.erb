@@ -22,11 +22,18 @@
         <% else %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              安安！ <%= current_user.email %> 實驗還順利嗎？
+              安安！
+              <% if current_user.profile != nil && current_user.profile.name != nil %>
+                <%= current_user.profile.name %> ～
+              <% else %>
+                <%= current_user.email %> ～
+              <% end %>
+              實驗還順利嗎？
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to("登出", destroy_user_session_path, method: :delete) %></li>
+              <li><%= link_to("編輯個人資料", edit_user_profile_path) %></li>
             </ul>
           </li>
         <% end %>

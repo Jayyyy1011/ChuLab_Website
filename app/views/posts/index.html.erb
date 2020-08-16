@@ -14,7 +14,12 @@
     <div class="col-md-offset-4 col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= post.user.email %> 說...
+          <h3 class="panel-title">
+            <% if post.user.profile != nil && post.user.profile.name != nil %>
+              <%= post.user.profile.name %>
+            <% else %>
+              <%= post.user.email %> 說...
+            <% end %>
             <%= link_to("刪除", post_path(post), class:"btn btn-xs btn-default pull-right", method: :delete, data:{ confirm:"Are you sure?"}) %>
             <%= link_to("編輯", edit_post_path(post), class:"btn btn-xs btn-default pull-right") %>
           </h3>
