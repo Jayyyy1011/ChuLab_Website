@@ -5,5 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+  has_many :chemicals
+  has_many :optical_elements
+
   has_one :profile
+
 end

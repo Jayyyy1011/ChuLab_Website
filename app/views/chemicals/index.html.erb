@@ -20,6 +20,8 @@
       <td>存放處</td>
       <td>剩餘量</td>
       <td>備註</td>
+      <td>編輯日期</td>
+      <td>編輯者</td>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +36,8 @@
       <td><%= chemical.storage_place %></td>
       <td><%= chemical.remain %></td>
       <td><%= chemical.remark %></td>
+      <td><%= chemical.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td><%= chemical.user.profile.name %></td>
       <td>
         <%= link_to("編輯", edit_chemical_path(chemical), class:"btn btn-sm btn-default") %>
         <%= link_to("刪除", chemical_path(chemical), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>

@@ -12,6 +12,7 @@ class ChemicalsController < ApplicationController
 
   def create
     @chemical = Chemical.new(chemical_params)
+    @chemical.user = current_user
 
     if @chemical.save
       redirect_to chemicals_path, notice: "已成功新增！"
@@ -26,6 +27,7 @@ class ChemicalsController < ApplicationController
 
   def update
     @chemical = Chemical.find(params[:id])
+    @chemical.user = current_user
 
     if @chemical.update(chemical_params)
       redirect_to chemicals_path
@@ -44,7 +46,7 @@ class ChemicalsController < ApplicationController
   private
 
     def chemical_params
-      params.require(:chemical).permit(:name, :formula, :nickname, :package, :company, :agent, :storage_place, :remain, :remark)
+      params.require(:chemical).permit(:name, :formula, :nickname, :package, :company, :agent, :storage_place, :remain, :remark, :user_id)
     end
 
 end

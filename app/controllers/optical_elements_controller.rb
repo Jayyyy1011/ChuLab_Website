@@ -12,6 +12,7 @@ class OpticalElementsController < ApplicationController
 
   def create
     @optical_element = OpticalElement.new(optical_element_params)
+    @optical_element.user = current_user
 
     if @optical_element.save
       redirect_to optical_elements_path, notice: "已成功新增！"
@@ -26,6 +27,7 @@ class OpticalElementsController < ApplicationController
 
   def update
     @optical_element = OpticalElement.find(params[:id])
+    @optical_element.user = current_user
 
     if @optical_element.update(optical_element_params)
       redirect_to optical_elements_path
@@ -45,7 +47,7 @@ class OpticalElementsController < ApplicationController
   private
 
   def optical_element_params
-    params.require(:optical_element).permit(:item_number, :bandwidth, :category_id, :remark)
+    params.require(:optical_element).permit(:item_number, :bandwidth, :category_id, :remark, :user_id)
   end
 
 end
