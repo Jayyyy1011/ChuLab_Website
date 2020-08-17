@@ -8,6 +8,10 @@
   </div>
 </div>
 
+<br><br><br>
+
+<div class="col-md-10 col-md-offset-1">
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -38,11 +42,14 @@
       <td><%= chemical.remark %></td>
       <td><%= chemical.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
       <td><%= chemical.user.profile.name %></td>
+      <% if current_user %>
       <td>
         <%= link_to("編輯", edit_chemical_path(chemical), class:"btn btn-sm btn-default") %>
         <%= link_to("刪除", chemical_path(chemical), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>

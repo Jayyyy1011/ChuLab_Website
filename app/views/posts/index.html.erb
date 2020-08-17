@@ -6,6 +6,7 @@
   <div class="post">
     <%= link_to("我想留言", new_post_path, class:"btn btn-primary pull-right") %>
   </div>
+</div>
 
 <br><br><br>
 
@@ -20,8 +21,10 @@
             <% else %>
               <%= post.user.email %> 說...
             <% end %>
+            <% if post.user == current_user %>
             <%= link_to("刪除", post_path(post), class:"btn btn-xs btn-default pull-right", method: :delete, data:{ confirm:"Are you sure?"}) %>
             <%= link_to("編輯", edit_post_path(post), class:"btn btn-xs btn-default pull-right") %>
+            <% end %>
           </h3>
         </div>
         <div class="panel-body">

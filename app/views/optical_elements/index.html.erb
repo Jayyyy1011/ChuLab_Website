@@ -3,9 +3,14 @@
 </div>
 
 <div class="col-md-12">
-  <div class="meeting">
+  <div class="">
     <%= link_to("新增", new_optical_element_path, class:"btn btn-primary pull-right") %>
   </div>
+</div>
+
+  <br><br><br>
+
+  <div class="col-md-8 col-md-offset-2">
   <table class="table table-hover">
 
     <thead>
@@ -28,13 +33,15 @@
         <td><%= optical_element.remark %></td>
         <td><%= optical_element.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
         <td><%= optical_element.user.profile.name %></td>
+        <% if current_user %>
         <td>
-          <%= link_to("編輯", edit_optical_element_path(optical_element), class:"btn btn-sm btn-default") %>
-          <%= link_to("刪除", optical_element_path(optical_element), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+          <%= link_to("刪除", optical_element_path(optical_element), class:"btn btn-sm btn-default pull-right", method: :delete, data: { confirm: "Are you sure?"}) %>
+          <%= link_to("編輯", edit_optical_element_path(optical_element), class:"btn btn-sm btn-default pull-right") %>
         </td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>
 
   </table>
-</div>
+  </div>
