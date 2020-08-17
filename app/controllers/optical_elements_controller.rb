@@ -3,7 +3,7 @@ class OpticalElementsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @optical_elements = OpticalElement.all
+    @optical_elements = OpticalElement.recent
   end
 
   def new

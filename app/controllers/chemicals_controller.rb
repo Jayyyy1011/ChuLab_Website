@@ -3,7 +3,7 @@ class ChemicalsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @chemicals = Chemical.all
+    @chemicals = Chemical.recent
   end
 
   def new
