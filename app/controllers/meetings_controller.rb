@@ -1,22 +1,14 @@
 class MeetingsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
 
   def index
-    @meetings = Meeting.all
-  end
-
-  def new
-    @meeting = Meeting.new
+    @meetings = Meeting.date
   end
 
   def create
     @meeting = Meeting.new(meeting_params)
-    if @meeting.save
-      redirect_to meetings_path, notice: "已成功新增！"
-    else
-      render :new
-    end
+    @meeting.save
   end
 
   def edit
@@ -36,7 +28,7 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     @meeting.delete
-    redirect_to meetings_path, alert: "已刪除此項目！"
+
   end
 
   private

@@ -2,10 +2,24 @@
   <h1> Meeting時程表 </h1>
 </div>
 
-<div class="col-md-12">
-  <div class="meeting">
-    <%= link_to("新增", new_meeting_path, class:"btn btn-primary pull-right") %>
+<div class="col-md-4 col-md-offset-4">
+  <div>
+    <% if current_user %>
+      <%= simple_form_for Meeting.new, :remote => true do |f| %>
+        <div class="form-group">
+          <%= f.input :date, label: "日期",
+                                 as: :date, start_year: Date.today.year, end_year: Date.today.year + 1, order: [:year, :month, :day],
+                                 input_html:{ class: "date required form-control"} %>
+          <%= f.input :speaker, label: "講者", input_html:{ class: "form-control"} %>
+          <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
+        </div>
+          <b>星號 * 表示必填</b><%= f.submit "送出", class:"btn btn-primary pull-right", data: {disable_with: "送出中..."} %>
+      <% end %>
+    <% end %>
   </div>
+
+  <br></br>
+
   <table class="table table-hover">
 
     <thead>
@@ -16,17 +30,9 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody id="meeting-list">
       <% @meetings.each do |meeting| %>
-      <tr>
-        <td><%= meeting.date %></td>
-        <td><%= meeting.speaker %></td>
-        <td><%= meeting.remark %></td>
-        <td>
-          <%= link_to("編輯", edit_meeting_path(meeting), class:"btn btn-sm btn-default") %>
-          <%= link_to("刪除", meeting_path(meeting), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
-        </td>
-      </tr>
+        <%= render :partial => "meeting", :locals => { :meeting => meeting } %>
       <% end %>
     </tbody>
 

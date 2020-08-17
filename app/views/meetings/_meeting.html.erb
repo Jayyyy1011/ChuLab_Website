@@ -1,0 +1,11 @@
+<tr id="meeting-<%= meeting.id %>">
+  <td><%= meeting.date %></td>
+  <td><%= meeting.speaker %></td>
+  <td><%= meeting.remark %></td>
+  <% if current_user %>
+  <td>
+    <%= link_to("刪除", meeting_path(meeting), class:"btn btn-sm btn-default pull-right", method: :delete, :remote => true) %>
+    <%= link_to("編輯", edit_meeting_path(meeting), class:"btn btn-sm btn-default pull-right") %>
+  </td>
+  <% end %>
+</tr>
