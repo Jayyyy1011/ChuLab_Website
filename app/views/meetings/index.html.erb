@@ -7,9 +7,7 @@
     <% if current_user %>
       <%= simple_form_for Meeting.new, :remote => true do |f| %>
         <div class="form-group">
-          <%= f.input :date, label: "日期",
-                                 as: :date, start_year: Date.today.year, end_year: Date.today.year + 1, order: [:year, :month, :day],
-                                 input_html:{ class: "date required form-control"} %>
+          <%= f.input :date, label: "日期", :as=> 'string', placeholder: "YYYY-MM-DD", input_html: {value: Date.today }%>
           <%= f.input :speaker, label: "講者", input_html:{ class: "form-control"} %>
           <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
         </div>
@@ -38,3 +36,7 @@
 
   </table>
 </div>
+
+<script>
+  $("#meeting_date").datepicker({ format: "yyyy-mm-dd" });
+</script>

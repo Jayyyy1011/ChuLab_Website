@@ -5,9 +5,7 @@
   <div class="col-md-4 col-md-offset-4">
     <div class="form-group">
       <%= f.input :name, label: "名字", input_html:{ class: "form-control"} %>
-      <%= f.input :birthday, label: "生日",
-                             as: :date, start_year: 1975, end_year: 2010, order: [:year, :month, :day],
-                             input_html:{ class: "date required form-control"} %>
+      <%= f.input :birthday, label: "生日", :as=> 'string', placeholder: "YYYY-MM-DD" %>
     </div>
 
     <br></br>
@@ -15,3 +13,7 @@
   </div>
 
 <% end %>
+
+<script>
+  $("#profile_birthday").datepicker({ format: "yyyy-mm-dd" });
+</script>
