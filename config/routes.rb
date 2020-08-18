@@ -5,13 +5,17 @@ Rails.application.routes.draw do
   resources :meetings, except: [:new, :show]
   get "/meetings/print", to: "meetings#print"
 
-  resources :chemicals
+  resources :chemicals, except: [:show] do
+    member do
+      post "toggle_flag" => "chemicals#toggle_flag"
+    end
+  end
 
-  resources :optical_elements
+  resources :optical_elements, except: [:show]
 
   resources :posts
 
-  resource :user do
+  resource :user, except: [:show]  do
     resource :profile, :controller => "user_profiles"
   end
 

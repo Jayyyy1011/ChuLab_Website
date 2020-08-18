@@ -43,6 +43,21 @@ class ChemicalsController < ApplicationController
     redirect_to chemicals_path, alert: "已刪處此藥品！"
   end
 
+  def toggle_flag
+    @chemical = Chemical.find(params[:id])
+    @chemical.user = current_user
+    
+    if @chemical.flag_at
+      @chemical.flag_at = nil
+    else
+      @chemical.flag_at = Time.now
+    end
+
+    @chemical.save!
+
+    render :json => { :message => "ok", :flag_at => @chemical.flag_at, :id => @chemical.id }
+  end
+
   private
 
     def chemical_params

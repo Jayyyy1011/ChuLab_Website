@@ -26,6 +26,7 @@
       <td>備註</td>
       <td>編輯日期</td>
       <td>編輯者</td>
+      <td>使用情形</td>
     </tr>
   </thead>
   <tbody>
@@ -40,12 +41,26 @@
       <td><%= chemical.storage_place %></td>
       <td><%= chemical.remain %></td>
       <td><%= chemical.remark %></td>
-      <td><%= chemical.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+      <td><%= chemical.updated_at %></td>
       <td><%= chemical.user.profile.name %></td>
+
       <% if current_user %>
+      <td>
+          <label>
+          <%= check_box_tag "mark_flag[#{chemical.id}]", 1, chemical.flag_at.present?,
+                :data => { :url => toggle_flag_chemical_path(chemical) }, :class => "toggle-flag" %> 有使用
+            <span id="chemical-flag-<%= chemical.id %>"></span>
+          </label>
+      </td>
       <td>
         <%= link_to("編輯", edit_chemical_path(chemical), class:"btn btn-sm btn-default") %>
         <%= link_to("刪除", chemical_path(chemical), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+      </td>
+      <% else %>
+      <td>
+        <% if chemical.flag_at %>
+          有使用
+        <% end %>
       </td>
       <% end %>
     </tr>
@@ -53,3 +68,15 @@
   </tbody>
 </table>
 </div>
+
+<script>
+  $(".toggle-flag").on('change', function(){
+    var url = $(this).data("url");
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      dataType: "json",
+    });
+  });
+</script>
