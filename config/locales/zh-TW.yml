@@ -1,0 +1,21 @@
+"zh-TW":
+  activerecord:
+    attributes:
+      meeting:
+        speaker: "講者"
+      chemical:
+        name: "學名"
+        formula: "化學式"
+        nickname: "別名"
+        package: "包裝"
+        company: "廠牌"
+        agent: "代理商"
+        storage_place: "存放處"
+        remain: "剩餘量"
+        remark: "備註"
+      optical_element:
+        item_number: "物件型號"
+        category: "類別"
+        bandwidth: "適用光區"
+      post:
+        content: "內容"
