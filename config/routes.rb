@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
 
-  resources :meetings, except: [:new]
+  resources :meetings, except: [:new, :show]
+  get "/meetings/print", to: "meetings#print"
 
   resources :chemicals
 

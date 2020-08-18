@@ -1,6 +1,7 @@
 <% if @meeting.valid? %>
   $("#meeting-list").prepend("<%=j render :partial => "meeting", :locals => { :meeting => @meeting } %>");
   $("#meeting_speaker").val("");
+  $("#meeting_speaker2").val("");
   $("#meeting_remark").val("");
 <% else %>
   alert("請填入講者");

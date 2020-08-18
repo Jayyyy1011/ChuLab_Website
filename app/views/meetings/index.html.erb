@@ -8,10 +8,12 @@
       <%= simple_form_for Meeting.new, :remote => true do |f| %>
         <div class="form-group">
           <%= f.input :date, label: "日期", :as=> 'string', placeholder: "YYYY-MM-DD", input_html: {value: Date.today }%>
-          <%= f.input :speaker, label: "講者", input_html:{ class: "form-control"} %>
+          <%= f.input :speaker, label: "講者（ＬＫＣ）", input_html:{ class: "form-control"} %>
+          <%= f.input :speaker2, label: "講者（ＩＣＣ）", input_html:{ class: "form-control"} %>
           <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
         </div>
-          <b>星號 * 表示必填</b><%= f.submit "送出", class:"btn btn-primary pull-right", data: {disable_with: "送出中..."} %>
+          <b>星號 * 表示必填；刷新網頁即可按照日期重新排序</b><%= f.submit "送出", class:"btn btn-primary pull-right", data: {disable_with: "送出中..."} %>
+
       <% end %>
     <% end %>
   </div>
@@ -23,8 +25,12 @@
     <thead>
       <tr>
         <td>日期</td>
-        <td>講者</td>
+        <td>講者（ＬＫＣ）</td>
+        <td>講者（ＩＣＣ）</td>
         <td>備註</td>
+        <% if current_user %>
+        <td><%= link_to("進入列印頁", meetings_print_path, class:"btn btn-default btn-sm pull-right") %></td>
+        <% end %>
       </tr>
     </thead>
 

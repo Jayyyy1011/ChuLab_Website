@@ -28,13 +28,16 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     @meeting.delete
+  end
 
+  def print
+    @meetings = Meeting.date
   end
 
   private
 
   def meeting_params
-    params.require(:meeting).permit(:date, :speaker, :remark)
+    params.require(:meeting).permit(:date, :speaker, :remark, :speaker2)
   end
 
 end
