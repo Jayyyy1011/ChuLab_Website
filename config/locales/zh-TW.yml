@@ -2,7 +2,7 @@
   activerecord:
     attributes:
       meeting:
-        speaker: "講者"
+        speaker: "講者（ＬＫＣ）"
       chemical:
         name: "學名"
         formula: "化學式"
