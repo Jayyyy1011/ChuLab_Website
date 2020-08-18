@@ -33,7 +33,13 @@
         <td><%= optical_element.bandwidth %></td>
         <td><%= optical_element.remark %></td>
         <td><%= optical_element.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
-        <td><%= optical_element.user.profile.name %></td>
+        <td>
+          <% if optical_element.user.profile != nil && optical_element.user.profile.name != nil %>
+            <%= optical_element.user.profile.name %>
+          <% else %>
+            <%= optical_element.user.email %>
+          <% end %>
+        </td>
         <% if current_user %>
             <td>
                 <label>

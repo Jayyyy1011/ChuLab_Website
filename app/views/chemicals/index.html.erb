@@ -42,7 +42,13 @@
       <td><%= chemical.remain %></td>
       <td><%= chemical.remark %></td>
       <td><%= chemical.updated_at %></td>
-      <td><%= chemical.user.profile.name %></td>
+      <td>
+        <% if chemical.user.profile != nil && chemical.user.profile.name != nil %>
+          <%= chemical.user.profile.name %>
+        <% else %>
+          <%= chemical.user.email %>
+        <% end %>
+      </td>
 
       <% if current_user %>
       <td>
