@@ -18,4 +18,5 @@
         category: "類別"
         bandwidth: "適用光區"
       post:
+        title: "主題"
         content: "內容"

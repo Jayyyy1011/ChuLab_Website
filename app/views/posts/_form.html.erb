@@ -1,7 +1,8 @@
 <%= simple_form_for @post do |f| %>
 
   <div class="form-group">
-    <%= f.input :content, label: "我想說...", input_html:{class: "form-control"} %>
+    <%= f.input :title, label: "我想分享的主題是...", input_html:{class: "form-control"} %>
+    <%= f.input :content, label: "內容是...", input_html:{class: "form-control"} %>
   </div>
     <b>星號 * 表示必填</b>
     <br></br>
