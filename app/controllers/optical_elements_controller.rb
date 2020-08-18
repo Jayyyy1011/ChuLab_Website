@@ -44,6 +44,22 @@ class OpticalElementsController < ApplicationController
     redirect_to optical_elements_path, alert:"已刪除此項目！"
   end
 
+  def toggle_flag
+    @optical_element = OpticalElement.find(params[:id])
+    @optical_element.user = current_user
+
+    if @optical_element.flag_at
+      @optical_element.flag_at = nil
+    else
+      @optical_element.flag_at = Time.now
+    end
+
+    @optical_element.save!
+
+    render :json => { :message => "ok", :flag_at => @optical_element.flag_at, :id => @optical_element.id }
+  end
+
+
   private
 
   def optical_element_params
