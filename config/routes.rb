@@ -17,10 +17,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts
+  resources :posts, except: [:show]
 
   resource :user, except: [:show]  do
     resource :profile, :controller => "user_profiles"
+  end
+
+  namespace :account do
+    resources :posts, except: [:show] 
   end
 
 end
