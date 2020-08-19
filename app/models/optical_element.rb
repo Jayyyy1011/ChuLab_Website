@@ -5,4 +5,6 @@ class OpticalElement < ApplicationRecord
 
   validates :item_number, :bandwidth, presence: true
 
+  scope :category_order, -> { order("category_id ASC") }
+
 end

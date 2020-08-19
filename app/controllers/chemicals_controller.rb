@@ -3,7 +3,7 @@ class ChemicalsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @chemicals = Chemical.recent
+    @chemicals = Chemical.recent_update
   end
 
   def new
@@ -46,7 +46,7 @@ class ChemicalsController < ApplicationController
   def toggle_flag
     @chemical = Chemical.find(params[:id])
     @chemical.user = current_user
-    
+
     if @chemical.flag_at
       @chemical.flag_at = nil
     else
