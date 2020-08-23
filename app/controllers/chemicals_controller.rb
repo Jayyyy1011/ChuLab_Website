@@ -4,6 +4,12 @@ class ChemicalsController < ApplicationController
 
   def index
     @chemicals = Chemical.recent_update
+
+      respond_to do |format|
+        format.html
+        format.xlsx
+      end
+
   end
 
   def new

@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "藥品清單") do |sheet|
+  sheet.add_row ["學名", "化學式", "別名", "包裝", "廠牌", "代理商", "存放處", "剩餘量", "備註"]
+  @chemicals.each do |c|
+    sheet.add_row [c.name, c.formula, c.nickname, c.package, c.company, c.agent, c.storage_place, c.remain, c.remark]
+  end
+end

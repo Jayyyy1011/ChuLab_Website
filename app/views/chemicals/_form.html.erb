@@ -1,7 +1,7 @@
 <%= simple_form_for @chemical do |f| %>
 
   <div class="form-group">
-    <%= f.input :name, label: "學名", input_html:{class: "form-control"} %>
+    <%= f.input :name, label: "學名", :autofocus => true, input_html:{class: "form-control"} %>
     <%= f.input :formula, label: "化學式", input_html:{ class: "form-control"} %>
     <%= f.input :nickname, label: "別名", input_html:{ class: "form-control"} %>
     <%= f.input :package, label: "包裝", input_html:{ class: "form-control"} %>

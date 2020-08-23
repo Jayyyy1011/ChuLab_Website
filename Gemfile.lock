@@ -41,6 +41,13 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (9.8.6.1)
       execjs
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
+    axlsx_rails (0.5.2)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.15)
     bindex (0.8.1)
     bootstrap-datepicker-rails (1.9.0.1)
@@ -72,6 +79,7 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    htmlentities (4.3.4)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -133,6 +141,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rubyzip (1.0.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -187,6 +196,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx
+  axlsx_rails
   bootstrap-datepicker-rails
   bootstrap-sass
   byebug
@@ -199,6 +210,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.7, >= 5.0.7.2)
   rails-i18n
+  rubyzip
   sass-rails (~> 5.0)
   simple_form
   spring

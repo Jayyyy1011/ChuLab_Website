@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :posts, except: [:show] 
+    resources :posts, except: [:show]
   end
 
 end
