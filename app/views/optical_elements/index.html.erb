@@ -32,7 +32,7 @@
         <td><%= optical_element.item_number %></td>
         <td><%= optical_element.bandwidth %></td>
         <td><%= optical_element.remark %></td>
-        <td><%= optical_element.updated_at.strftime("%Y/%m/%d %I:%M %p") %></td>
+        <td><%= optical_element.updated_at %></td>
         <td>
           <% if optical_element.user.profile != nil && optical_element.user.profile.name != nil %>
             <%= optical_element.user.profile.name %>
@@ -44,7 +44,7 @@
             <td>
                 <label>
                 <%= check_box_tag "mark_flag[#{optical_element.id}]", 1, optical_element.flag_at.present?,
-                      :data => { :url => toggle_flag_optical_element_path(optical_element) }, :class => "toggle-flag" %> 有使用
+                      :data => { :url => toggle_flag_optical_element_path(optical_element) }, :class => "toggle-flag" %> 使用中
                   <span id="optical_element-flag-<%= optical_element.id %>"></span>
                 </label>
             </td>
@@ -55,7 +55,7 @@
         <% else %>
             <td>
               <% if optical_element.flag_at %>
-                有使用
+                使用中
               <% end %>
             </td>
         <% end %>
