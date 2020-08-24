@@ -35,9 +35,7 @@
     </thead>
 
     <tbody id="meeting-list">
-      <% @meetings.each do |meeting| %>
-        <%= render :partial => "meeting", :locals => { :meeting => meeting } %>
-      <% end %>
+       <%= render :partial => "meeting", :collection => @meetings, :as => :meeting %>
     </tbody>
 
   </table>
