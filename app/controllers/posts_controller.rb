@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @posts = Post.recent.paginate(:page => params[:page], :per_page => 4)
+    @posts = Post.includes(:user).recent.paginate(:page => params[:page], :per_page => 4)
   end
 
   def new
