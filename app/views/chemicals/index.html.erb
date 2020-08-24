@@ -4,8 +4,10 @@
 
 <div class="col-md-12">
   <div class="chemical">
+    <% if current_user %>
     <%= link_to("新增", new_chemical_path, class:"btn btn-primary pull-right") %>
     <%= link_to "匯出 Excel", chemicals_path(:format => :xlsx), :class => "btn btn-default pull-right" %>
+    <% end %>
   </div>
 </div>
 

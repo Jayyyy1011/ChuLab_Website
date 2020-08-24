@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.delete
-    redirect_to posts_path, alert: "已刪除此留言！"
+    redirect_to posts_path, alert: "已刪除此筆記！"
   end
 
   private

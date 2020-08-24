@@ -4,7 +4,9 @@
 
 <div class="col-md-12">
   <div class="">
+    <% if current_user %>
     <%= link_to("新增", new_optical_element_path, class:"btn btn-primary pull-right") %>
+    <% end %>
   </div>
 </div>
 
