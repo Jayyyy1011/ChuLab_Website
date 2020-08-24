@@ -41,6 +41,22 @@ class PostsController < ApplicationController
     redirect_to posts_path, alert: "已刪除此筆記！"
   end
 
+  def collect
+    @post = Post.find(params[:id])
+    if !current_user.is_fan_of?(@post)
+      current_user.collected_posts << @post
+    end
+    render "collect"
+  end
+
+  def cancel
+    @post = Post.find(params[:id])
+    if current_user.is_fan_of?(@post)
+      current_user.collected_posts.delete(@post)
+    end
+    render "collect"
+  end
+
   private
 
   def post_params

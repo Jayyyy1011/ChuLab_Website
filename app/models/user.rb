@@ -10,4 +10,11 @@ class User < ApplicationRecord
 
   has_one :profile
 
+  has_many :collects
+  has_many :collected_posts, :through => :collects, :source => :post
+
+  def is_fan_of?(post)
+    collected_posts.include?(post)
+  end
+  
 end
