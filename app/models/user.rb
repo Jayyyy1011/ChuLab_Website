@@ -8,8 +8,6 @@ class User < ApplicationRecord
   has_many :chemicals
   has_many :optical_elements
 
-  has_one :profile
-
   has_many :collects
   has_many :collected_posts, :through => :collects, :source => :post
 
