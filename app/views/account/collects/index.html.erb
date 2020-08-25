@@ -9,7 +9,7 @@
       <div class="panel panel-default" id="post-<%= post.id %>">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <% if post.user.name != nil && post.user.name != "" %>
+            <% if post_user_name_exist(post) %>
               <%= post.user.name %> 分享了 "<%= post.title %>"
             <% else %>
               <%= post.user.email %> 分享了 "<%= post.title %>"
