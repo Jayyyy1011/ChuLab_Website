@@ -24,12 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user do
-    resource :profile, :controller => "user_profiles"
-  end
+  resources :users
 
   namespace :account do
     resources :posts, except: [:show]
+    resources :users
     resources :collects, except: [:show] do
       member do
         post "cancel" => "collects#cancel"
