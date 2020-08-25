@@ -22,7 +22,6 @@ c6 = Category.create(:name => "beamsplitter")
 15.times do |m|
   Meeting.create!(:date => Time.now,
                 :speaker => [u1.name,u2.name,u3.name,u4.name,u5.name].sample,
-                :speaker2 => [u1.name,u2.name,u3.name,u4.name,u5.name].sample,
-                :remark => Faker::Lorem.paragraph
+                :speaker2 => [u1.name,u2.name,u3.name,u4.name,u5.name].sample
   )
 end
