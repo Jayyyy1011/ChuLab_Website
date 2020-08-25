@@ -14,10 +14,6 @@
             <% else %>
               <%= post.user.email %> 分享了 "<%= post.title %>"
             <% end %>
-            <% if post.user == current_user %>
-            <%= link_to("刪除", post_path(post), class:"btn btn-xs btn-default pull-right", method: :delete, data:{ confirm:"Are you sure?"}) %>
-            <%= link_to("編輯", edit_post_path(post), class:"btn btn-xs btn-default pull-right") %>
-            <% end %>
             <%= link_to("取消收藏", cancel_account_collect_path(post), class:"btn btn-xs btn-default pull-right", method: :post, :remote => true) %>
           </h3>
         </div>

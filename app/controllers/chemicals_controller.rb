@@ -1,9 +1,10 @@
 class ChemicalsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_params, only: [:edit, :update, :destroy, :toggle_flag]
 
   def index
-    @chemicals = Chemical.includes(:user).recent_update.paginate(:page => params[:page], :per_page => 10)
+    @chemicals = Chemical.recent_update.paginate(:page => params[:page], :per_page => 10)
 
       respond_to do |format|
         format.html
@@ -17,8 +18,7 @@ class ChemicalsController < ApplicationController
   end
 
   def create
-    @chemical = Chemical.new(chemical_params)
-    @chemical.user = current_user
+    @chemical = current_user.chemicals.build(chemical_params)
 
     if @chemical.save
       redirect_to chemicals_path, notice: "已成功新增！"
@@ -28,11 +28,9 @@ class ChemicalsController < ApplicationController
   end
 
   def edit
-    @chemical = Chemical.find(params[:id])
   end
 
   def update
-    @chemical = Chemical.find(params[:id])
     @chemical.user = current_user
 
     if @chemical.update(chemical_params)
@@ -44,13 +42,11 @@ class ChemicalsController < ApplicationController
   end
 
   def destroy
-    @chemical = Chemical.find(params[:id])
     @chemical.delete
     redirect_to chemicals_path, alert: "已刪處此藥品！"
   end
 
   def toggle_flag
-    @chemical = Chemical.find(params[:id])
     @chemical.user = current_user
 
     if @chemical.flag_at
@@ -68,6 +64,10 @@ class ChemicalsController < ApplicationController
 
     def chemical_params
       params.require(:chemical).permit(:name, :formula, :nickname, :package, :company, :agent, :storage_place, :remain, :remark, :user_id)
+    end
+
+    def find_params
+      @chemical = Chemical.find(params[:id])
     end
 
 end

@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_params, only: [:edit, :update, :destroy, :collect, :cancel]
 
   def index
-    @posts = Post.includes(:user).recent.paginate(:page => params[:page], :per_page => 4)
+    @posts = Post.recent.paginate(:page => params[:page], :per_page => 4)
   end
 
   def new
@@ -11,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post = current_user.posts.build(post_params)
+
     if @post.save
       redirect_to posts_path, notice: "已成功新增！"
     else
@@ -21,11 +22,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+
+    if @post.user != current_user
+      flash[:warning] = "您不是該筆記的作者！"
+      redirect_to posts_path
+    end
   end
 
   def update
-    @post = Post.find(params[:id])
+
     @post.user = current_user
     if @post.update(post_params)
       redirect_to posts_path
@@ -36,13 +41,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.delete
     redirect_to posts_path, alert: "已刪除此筆記！"
   end
 
   def collect
-    @post = Post.find(params[:id])
+
     if !current_user.is_fan_of?(@post)
       current_user.collected_posts << @post
     end
@@ -50,7 +54,7 @@ class PostsController < ApplicationController
   end
 
   def cancel
-    @post = Post.find(params[:id])
+
     if current_user.is_fan_of?(@post)
       current_user.collected_posts.delete(@post)
     end
@@ -61,6 +65,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :user_id)
+  end
+
+  def find_params
+    @post = Post.find(params[:id])
   end
 
 end

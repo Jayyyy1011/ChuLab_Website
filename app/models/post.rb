@@ -8,6 +8,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  scope :recent, -> { order("id DESC") }
+  scope :recent, -> { includes(:user).order("id DESC") }
 
 end

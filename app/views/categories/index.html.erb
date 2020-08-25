@@ -24,11 +24,7 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.optical_elements.count %></td>
-
         <td>
-          <% if current_user.admin? %>
-          <%= link_to("刪除", category_path(category), class:"btn btn-sm btn-default pull-right", method: :delete, data: { confirm: "Are you sure?"}) %>
-          <% end %>
           <%= link_to("編輯", edit_category_path(category), class:"btn btn-sm btn-default pull-right") %>
         </td>
       </tr>

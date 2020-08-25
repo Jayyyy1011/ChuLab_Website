@@ -4,12 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
-  has_many :chemicals
-  has_many :optical_elements
+  has_many :posts, dependent: :destroy
+  has_many :chemicals, dependent: :destroy
+  has_many :optical_elements, dependent: :destroy
 
-  has_many :collects
-  has_many :collected_posts, :through => :collects, :source => :post
+  has_many :collects, dependent: :destroy
+  has_many :collected_posts, :through => :collects, :source => :post, dependent: :destroy
+
+  scope :recent, -> { order("id DESC") }
 
   def is_fan_of?(post)
     collected_posts.include?(post)

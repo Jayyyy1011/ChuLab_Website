@@ -1,9 +1,10 @@
 class OpticalElementsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_params, only: [:edit, :update, :destroy, :toggle_flag]
 
   def index
-    @optical_elements = OpticalElement.includes(:user).category_order.paginate(:page => params[:page], :per_page => 10)
+    @optical_elements = OpticalElement.category_order.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -11,8 +12,7 @@ class OpticalElementsController < ApplicationController
   end
 
   def create
-    @optical_element = OpticalElement.new(optical_element_params)
-    @optical_element.user = current_user
+    @optical_element = current_user.optical_elements.build(optical_element_params)
 
     if @optical_element.save
       redirect_to optical_elements_path, notice: "已成功新增！"
@@ -22,11 +22,9 @@ class OpticalElementsController < ApplicationController
   end
 
   def edit
-    @optical_element = OpticalElement.find(params[:id])
   end
 
   def update
-    @optical_element = OpticalElement.find(params[:id])
     @optical_element.user = current_user
 
     if @optical_element.update(optical_element_params)
@@ -38,14 +36,12 @@ class OpticalElementsController < ApplicationController
   end
 
   def destroy
-    @optical_element = OpticalElement.find(params[:id])
 
     @optical_element.delete
     redirect_to optical_elements_path, alert:"已刪除此項目！"
   end
 
   def toggle_flag
-    @optical_element = OpticalElement.find(params[:id])
     @optical_element.user = current_user
 
     if @optical_element.flag_at
@@ -64,6 +60,10 @@ class OpticalElementsController < ApplicationController
 
   def optical_element_params
     params.require(:optical_element).permit(:item_number, :bandwidth, :category_id, :remark, :user_id)
+  end
+
+  def find_params
+    @optical_element = OpticalElement.find(params[:id])
   end
 
 end

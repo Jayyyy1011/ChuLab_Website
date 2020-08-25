@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.delete
-    redirect_to users_path, alert: "已刪除此帳號！"
+    @users = User.recent.paginate(:page => params[:page], :per_page => 10)
   end
 end

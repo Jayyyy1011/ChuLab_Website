@@ -4,5 +4,7 @@ class Chemical < ApplicationRecord
 
   belongs_to :user
 
-  scope :recent_update, -> { order("updated_at DESC") }
+  scope :recent_update, -> { includes(:user).order("updated_at DESC") }
+
+
 end
