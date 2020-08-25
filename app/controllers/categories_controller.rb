@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    if @category.update
+    if @category.update(category_params)
       redirect_to optical_elements_path
       flash[:warning] = "編輯成功！"
     else
