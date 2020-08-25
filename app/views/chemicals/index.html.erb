@@ -46,8 +46,8 @@
       <td><%= chemical.remark %></td>
       <td><%= chemical.updated_at %></td>
       <td>
-        <% if chemical.user.profile != nil && chemical.user.profile.name != nil %>
-          <%= chemical.user.profile.name %>
+        <% if chemical.user.name != nil && chemical.user.name != "" %>
+          <%= chemical.user.name %>
         <% else %>
           <%= chemical.user.email %>
         <% end %>

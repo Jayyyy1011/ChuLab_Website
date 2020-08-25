@@ -36,8 +36,8 @@
         <td><%= optical_element.remark %></td>
         <td><%= optical_element.updated_at %></td>
         <td>
-          <% if optical_element.user.profile != nil && optical_element.user.profile.name != nil %>
-            <%= optical_element.user.profile.name %>
+          <% if optical_element.user.name != nil && optical_element.user.name != "" %>
+            <%= optical_element.user.name %>
           <% else %>
             <%= optical_element.user.email %>
           <% end %>
