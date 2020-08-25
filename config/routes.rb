@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user, except: [:show]  do
+  resource :user do
     resource :profile, :controller => "user_profiles"
   end
 

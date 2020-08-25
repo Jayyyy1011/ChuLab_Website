@@ -16,5 +16,9 @@ class User < ApplicationRecord
   def is_fan_of?(post)
     collected_posts.include?(post)
   end
-  
+
+  def admin?
+    is_admin
+  end
+
 end
