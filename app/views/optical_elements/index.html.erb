@@ -5,8 +5,10 @@
 <div class="col-md-12 col-sm-12">
   <div class="">
     <% if current_user %>
-    <%= link_to("新增", new_optical_element_path, class:"btn btn-primary pull-right") %>
+    <%= link_to("新增元件", new_optical_element_path, class:"btn btn-primary pull-right") %>
+    <%= link_to("管理類別", categories_path, class:"btn btn-default pull-right") %>
     <% end %>
+
   </div>
 </div>
 
@@ -66,6 +68,10 @@
     </tbody>
 
   </table>
+  </div>
+
+  <div class="text-center">
+    <%= will_paginate @optical_elements %>
   </div>
 
   <script>

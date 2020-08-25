@@ -79,6 +79,10 @@
 
 </div>
 
+<div class="text-center">
+  <%= will_paginate @chemicals %>
+</div>
+
 <script>
   $(".toggle-flag").on('change', function(){
     var url = $(this).data("url");

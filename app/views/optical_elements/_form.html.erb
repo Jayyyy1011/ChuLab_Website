@@ -3,7 +3,7 @@
   <div class="form-group">
     <%= f.association :category, label: "類別", prompt: "請選擇光學元件的類別", :autofocus => true, input_html:{ class: "form-control" } %>
     <%= f.input :item_number, label: "物件型號", input_html:{ class: "form-control"} %>
-    <%= f.input :bandwidth, label: "適用光區", input_html:{ class: "form-control"} %>
+    <%= f.input :bandwidth, label: "適用光區", placeholder: "XXX-XXX nm" ,input_html:{ class: "form-control"} %>
     <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
   </div>
     <b>星號 * 表示必填</b>

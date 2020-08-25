@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories
+
   resources :optical_elements, except: [:show] do
     member do
       post "toggle_flag" => "optical_elements#toggle_flag"

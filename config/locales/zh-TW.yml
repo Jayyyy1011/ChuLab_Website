@@ -20,3 +20,5 @@
       post:
         title: "主題"
         content: "內容"
+      category:
+        name: "名稱"

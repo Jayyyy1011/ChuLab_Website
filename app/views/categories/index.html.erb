@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1> 類別管理 </h1>
+</div>
+
+<div class="col-md-12 col-sm-12">
+    <%= link_to("新增類別", new_category_path, class:"btn btn-primary pull-right") %>
+    <%= link_to("回上一頁", optical_elements_path, class:"btn btn-default pull-right") %>
+</div>
+
+  <br><br><br>
+
+  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <td>類別</td>
+        <td>元件數目</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.optical_elements.count %></td>
+
+        <td>
+          <% if current_user.admin? %>
+          <%= link_to("刪除", category_path(category), class:"btn btn-sm btn-default pull-right", method: :delete, data: { confirm: "Are you sure?"}) %>
+          <% end %>
+          <%= link_to("編輯", edit_category_path(category), class:"btn btn-sm btn-default pull-right") %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+  </div>

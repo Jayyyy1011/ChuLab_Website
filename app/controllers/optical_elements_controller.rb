@@ -3,7 +3,7 @@ class OpticalElementsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @optical_elements = OpticalElement.includes(:user).category_order
+    @optical_elements = OpticalElement.includes(:user).category_order.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

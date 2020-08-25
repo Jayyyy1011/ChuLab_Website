@@ -3,7 +3,7 @@ class ChemicalsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @chemicals = Chemical.includes(:user).recent_update
+    @chemicals = Chemical.includes(:user).recent_update.paginate(:page => params[:page], :per_page => 10)
 
       respond_to do |format|
         format.html
