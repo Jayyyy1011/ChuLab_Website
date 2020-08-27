@@ -1,5 +1,7 @@
-<div class="text-center">
-  <h1> 我的筆記 </h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 align="center">我的筆記</h1>
+    </div>
 </div>
 
 <br><br>
@@ -12,7 +14,7 @@
             <%= post.title %>
             <% if post.user == current_user %>
             <%= link_to("刪除", account_post_path(post), class:"btn btn-xs btn-default pull-right", method: :delete, data:{ confirm:"Are you sure?"}) %>
-            <%= link_to("編輯", edit_post_path(post), class:"btn btn-xs btn-default pull-right") %>
+            <%= link_to("編輯", edit_account_post_path(post), class:"btn btn-xs btn-default pull-right") %>
             <% end %>
           </h3>
         </div>

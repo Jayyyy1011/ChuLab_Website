@@ -1,0 +1,23 @@
+<br><br>
+<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 align="center">編輯筆記</h1>
+      </div>
+
+      <div class="panel-body">
+        <%= simple_form_for @post do |f| %>
+
+          <div class="form-group">
+            <%= f.input :title, label: "我想分享的主題是...", :autofocus => true, input_html:{class: "form-control"} %>
+            <%= f.input :content, label: "內容是...", input_html:{class: "form-control"} %>
+          </div>
+            <b>星號 * 表示必填</b>
+            <br></br>
+          <%= f.submit "送出", class:"btn btn-primary", data: {disable_with: "送出中..."} %>
+
+        <% end %>
+      </div>
+    </div>
+
+</div>

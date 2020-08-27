@@ -1,78 +1,76 @@
-<div class="text-center">
-  <h1> 光學元件 </h1>
-</div>
-
-<div class="col-md-12 col-sm-12">
-  <div class="">
-    <% if current_user %>
-    <%= link_to("新增元件", new_optical_element_path, class:"btn btn-primary pull-right") %>
-    <%= link_to("管理類別", categories_path, class:"btn btn-default pull-right") %>
-    <% end %>
-
-  </div>
-</div>
-
-  <br><br><br>
-
-  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-  <table class="table table-hover">
-
-    <thead>
-      <tr>
-        <td>類別</td>
-        <td>物件型號</td>
-        <td>適用光區</td>
-        <td>備註</td>
-        <td>編輯時間</td>
-        <td>編輯者</td>
-        <td>使用情形</td>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @optical_elements.each do |optical_element| %>
-      <tr>
-        <td><%= optical_element.category.name %></td>
-        <td><%= optical_element.item_number %></td>
-        <td><%= optical_element.bandwidth %></td>
-        <td><%= optical_element.remark %></td>
-        <td><%= optical_element.updated_at %></td>
-        <td>
-          <% if optical_element_user_name_exist(optical_element) %>
-            <%= optical_element.user.name %>
-          <% else %>
-            <%= optical_element.user.email %>
+<br><br>
+<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+    <div class="panel panel-default panel-OP">
+      <div class="panel-heading">
+        <h1><h3>光學元件
+          <% if current_user %>
+          <%= link_to("新增元件", new_optical_element_path, class:"btn OP-add-btn pull-right") %>
+          <%= link_to("管理類別", categories_path, class:"btn OP-cat-btn pull-right") %>
           <% end %>
-        </td>
-        <% if current_user %>
-            <td>
-                <label>
-                <%= check_box_tag "mark_flag[#{optical_element.id}]", 1, optical_element.flag_at.present?,
-                      :data => { :url => toggle_flag_optical_element_path(optical_element) }, :class => "toggle-flag" %> 使用中
-                  <span id="optical_element-flag-<%= optical_element.id %>"></span>
-                </label>
-            </td>
-            <td>
-              <%= link_to("編輯", edit_optical_element_path(optical_element), class:"btn btn-sm btn-default") %>
-              <%= link_to("刪除", optical_element_path(optical_element), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
-            </td>
-        <% else %>
-            <td>
-              <% if optical_element.flag_at %>
-                使用中
-              <% end %>
-            </td>
-        <% end %>
-      </tr>
-      <% end %>
-    </tbody>
+        </h3>
+        </h1>
+      </div>
 
-  </table>
-  </div>
+      <div class="panel-body">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <td>類別</td>
+              <td>物件型號</td>
+              <td>適用光區</td>
+              <td>備註</td>
+              <td>編輯時間</td>
+              <td>編輯者</td>
+              <td>使用情形</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @optical_elements.each do |optical_element| %>
+            <tr>
+              <td><%= optical_element.category.name %></td>
+              <td><%= optical_element.item_number %></td>
+              <td><%= optical_element.bandwidth %></td>
+              <td><%= optical_element.remark %></td>
+              <td><%= optical_element.updated_at %></td>
+              <td>
+                <% if optical_element_user_name_exist(optical_element) %>
+                  <%= optical_element.user.name %>
+                <% else %>
+                  <%= optical_element.user.email %>
+                <% end %>
+              </td>
+              <% if current_user %>
+                  <td>
+                      <label>
+                      <%= check_box_tag "mark_flag[#{optical_element.id}]", 1, optical_element.flag_at.present?,
+                            :data => { :url => toggle_flag_optical_element_path(optical_element) }, :class => "toggle-flag" %> 使用中
+                        <span id="optical_element-flag-<%= optical_element.id %>"></span>
+                      </label>
+                  </td>
+                  <td>
+                    <%= link_to("編輯", edit_optical_element_path(optical_element), class:"btn btn-sm btn-default") %>
+                    <%= link_to("刪除", optical_element_path(optical_element), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+                  </td>
+              <% else %>
+                  <td>
+                    <% if optical_element.flag_at %>
+                      使用中
+                    <% end %>
+                  </td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   <div class="text-center">
     <%= will_paginate @optical_elements %>
   </div>
+
+</div>
+
 
   <script>
     $(".toggle-flag").on('change', function(){

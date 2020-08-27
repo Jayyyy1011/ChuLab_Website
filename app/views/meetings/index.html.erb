@@ -1,6 +1,9 @@
-<div class="text-center">
-  <h1> Meeting時程表 </h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 align="center">Meeting時程表</h1>
+    </div>
 </div>
+
 
 <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
   <div>
@@ -12,7 +15,7 @@
           <%= f.input :speaker2, label: "講者（ＩＣＣ）", input_html:{ class: "form-control"} %>
           <%= f.input :remark, label: "備註", input_html:{ class: "form-control"} %>
         </div>
-          <b>星號 * 表示必填；刷新網頁即可按照日期重新排序</b><%= f.submit "送出", class:"btn btn-primary pull-right", data: {disable_with: "送出中..."} %>
+          <b>星號 * 表示必填；刷新網頁即可按照日期重新排序</b><%= f.submit "送出", class:"btn meeting-add-btn pull-right", data: {disable_with: "送出中..."} %>
 
       <% end %>
     <% end %>

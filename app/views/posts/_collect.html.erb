@@ -1,7 +1,7 @@
 <span id="post-collect-<%= post.id %>">
   <% if current_user.is_fan_of?(post) %>
-    <%= link_to("取消收藏", cancel_post_path(post), class:"btn btn-xs btn-default pull-right", method: :post, :remote => true) %>
+    <%= link_to("取消收藏", cancel_post_path(post), class:"btn btn-xs post-cancel-btn pull-right", method: :post, :remote => true) %>
   <% else %>
-    <%= link_to("收藏", collect_post_path(post), class:"btn btn-xs btn-default pull-right", method: :post, :remote => true) %>
+    <%= link_to("收藏", collect_post_path(post), class:"btn btn-xs btn-info pull-right", method: :post, :remote => true) %>
   <% end %>
 </span>

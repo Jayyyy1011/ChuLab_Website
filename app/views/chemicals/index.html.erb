@@ -1,87 +1,87 @@
-<div class="text-center">
-  <h1>藥品清單</h1>
-</div>
-
-<div class="col-md-12 col-sm-12">
-  <div class="chemical">
-    <% if current_user %>
-    <%= link_to("新增", new_chemical_path, class:"btn btn-primary pull-right") %>
-    <%= link_to "匯出 Excel", chemicals_path(:format => :xlsx), :class => "btn btn-default pull-right" %>
-    <% end %>
-  </div>
-</div>
-
-<br><br><br>
-
+<br><br>
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <td>學名</td>
-      <td>化學式</td>
-      <td>別名</td>
-      <td>包裝</td>
-      <td>廠牌</td>
-      <td>代理商</td>
-      <td>存放處</td>
-      <td>剩餘量</td>
-      <td>備註</td>
-      <td>編輯日期</td>
-      <td>編輯者</td>
-      <td>使用情形</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @chemicals.each do |chemical| %>
-    <tr>
-      <td><%= chemical.name %></td>
-      <td><%= chemical.formula %></td>
-      <td><%= chemical.nickname %></td>
-      <td><%= chemical.package %></td>
-      <td><%= chemical.company %></td>
-      <td><%= chemical.agent %></td>
-      <td><%= chemical.storage_place %></td>
-      <td><%= chemical.remain %></td>
-      <td><%= chemical.remark %></td>
-      <td><%= chemical.updated_at %></td>
-      <td>
-        <% if chemical_user_name_exist(chemical) %>
-          <%= chemical.user.name %>
-        <% else %>
-          <%= chemical.user.email %>
+    <div class="panel panel-default panel-chemical">
+      <div class="panel-heading">
+        <h1><h3>藥品清單
+        <% if current_user %>
+        <%= link_to("新增", new_chemical_path, class:"btn chemical-add-btn pull-right") %>
+        <%= link_to "匯出 Excel", chemicals_path(:format => :xlsx), :class => "btn chemical-excel-btn pull-right" %>
         <% end %>
-      </td>
+        </h3>
+        </h1>
+      </div>
 
-      <% if current_user %>
-      <td>
-          <label>
-          <%= check_box_tag "mark_flag[#{chemical.id}]", 1, chemical.flag_at.present?,
-                :data => { :url => toggle_flag_chemical_path(chemical) }, :class => "toggle-flag" %> 有使用
-            <span id="chemical-flag-<%= chemical.id %>"></span>
-          </label>
-      </td>
-      <td>
-        <%= link_to("編輯", edit_chemical_path(chemical), class:"btn btn-sm btn-default") %>
-        <%= link_to("刪除", chemical_path(chemical), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
-      </td>
-      <% else %>
-      <td>
-        <% if chemical.flag_at %>
-          有使用
-        <% end %>
-      </td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="panel-body">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <td>學名</td>
+              <td>化學式</td>
+              <td>別名</td>
+              <td>包裝</td>
+              <td>廠牌</td>
+              <td>代理商</td>
+              <td>存放處</td>
+              <td>剩餘量</td>
+              <td>備註</td>
+              <td>編輯日期</td>
+              <td>編輯者</td>
+              <td>使用情形</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @chemicals.each do |chemical| %>
+            <tr>
+              <td><%= chemical.name %></td>
+              <td><%= chemical.formula %></td>
+              <td><%= chemical.nickname %></td>
+              <td><%= chemical.package %></td>
+              <td><%= chemical.company %></td>
+              <td><%= chemical.agent %></td>
+              <td><%= chemical.storage_place %></td>
+              <td><%= chemical.remain %></td>
+              <td><%= chemical.remark %></td>
+              <td><%= chemical.updated_at %></td>
+              <td>
+                <% if chemical_user_name_exist(chemical) %>
+                  <%= chemical.user.name %>
+                <% else %>
+                  <%= chemical.user.email %>
+                <% end %>
+              </td>
+
+              <% if current_user %>
+              <td>
+                  <label>
+                  <%= check_box_tag "mark_flag[#{chemical.id}]", 1, chemical.flag_at.present?,
+                        :data => { :url => toggle_flag_chemical_path(chemical) }, :class => "toggle-flag" %> 有使用
+                    <span id="chemical-flag-<%= chemical.id %>"></span>
+                  </label>
+              </td>
+              <td>
+                <%= link_to("編輯", edit_chemical_path(chemical), class:"btn btn-sm btn-default") %>
+                <%= link_to("刪除", chemical_path(chemical), class:"btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+              </td>
+              <% else %>
+              <td>
+                <% if chemical.flag_at %>
+                  有使用
+                <% end %>
+              </td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="text-center">
+    <%= will_paginate @chemicals %>
+  </div>
 
 </div>
 
-<div class="text-center">
-  <%= will_paginate @chemicals %>
-</div>
 
 <script>
   $(".toggle-flag").on('change', function(){

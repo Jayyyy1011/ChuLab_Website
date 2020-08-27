@@ -31,7 +31,6 @@ class PostsController < ApplicationController
 
   def update
 
-    @post.user = current_user
     if @post.update(post_params)
       redirect_to posts_path
       flash[:warning] = "已完成編輯！"
@@ -64,7 +63,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content)
   end
 
   def find_params
