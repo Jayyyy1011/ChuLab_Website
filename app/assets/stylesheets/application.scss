@@ -10,12 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-datepicker3";
+@import "font-awesome";
 
 //---------common---------
 
@@ -187,5 +189,60 @@ body {
       letter-spacing: 3px;//调整文字间距
       border-radius: 3px;//btn圆角
       width: 200px;//这里用指定宽度把btn拉得更长
+
+ }
+
+ //------loginbox-------
+
+ .loginbox {
+     background-image: url('https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80');
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: 750px;
+
+     .loginbox-inner {
+         background: #ecf0f1;
+         margin-top: 135px;
+         padding-top: 20px;
+         padding-bottom: 20px;
+         box-shadow: 1px 3px 5px #333;
+         border: 5px solid #666;
+         border-radius: 25px;
+         opacity: 0.95;
+     }
+
+     .loginbox-btn{
+       color: #fff;
+       background-color: #4A6BB5;
+       border-color: #4A6BB5;
+       font-size: 16px;
+       letter-spacing: 1px;
+       width: 100%;
+     }
+
+     .loginbox-btn:hover{
+       color: #fff;
+       background-color: #11345f;
+       border-color: #4A6BB5;
+       font-size: 16px;
+       letter-spacing: 1px;
+       width: 100%;
+     }
+
+     .forgetpsw {
+     float: right;
+     margin-top: -33px;
+     position: relative;
+     }
+
+     a{
+       color: #18bc9c;
+       background-color: transparent;
+     }
+
+     a:hover{
+       color: #18bc9c;
+       background-color: transparent;
+     }
 
  }
